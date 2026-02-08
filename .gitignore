@@ -2,5 +2,4 @@
 .Rhistory
 .RData
 .Rproj.user
-data/
 wilderness_visits_*.csv

@@ -16,29 +16,19 @@ An interactive Shiny app for tracking which U.S. wilderness areas you've visited
 
 ## Setup
 
-### Prerequisites
-
 Install the required R packages:
 
 ```r
 install.packages(c("shiny", "bslib", "leaflet", "sf", "dplyr", "DT", "jsonlite", "scales"))
 ```
 
-### Download boundary data
-
-Run the setup script once to download and simplify the wilderness area shapefile (~36 MB download, produces a ~2 MB GeoJSON):
-
-```r
-source("setup_data.R")
-```
-
-This creates `data/wilderness_areas.geojson`.
-
-### Launch the app
+Then launch the app:
 
 ```r
 shiny::runApp()
 ```
+
+The boundary data (`data/wilderness_areas.geojson`) is included in the repo. To refresh it from the latest [wilderness.net](https://wilderness.net) shapefile, delete the file and run `source("setup_data.R")`.
 
 ## Saving and restoring your list
 
