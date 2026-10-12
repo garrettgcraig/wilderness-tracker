@@ -1,40 +1,18 @@
-# U.S. Wilderness Tracker
+# Public Lands Tracker
 
-An interactive Shiny app for tracking which U.S. wilderness areas you've visited. Built on boundary data from [Wilderness Connect](https://wilderness.net) covering all 843 areas in the National Wilderness Preservation System.
+The tracker has moved to a static JavaScript + Leaflet app. Use **[Public Lands Tracker](https://garrettgcraig.com/wilderness)**.
 
-## Features
+The maintained application source lives in **[garrettgcraig/Personal-Website](https://github.com/garrettgcraig/Personal-Website)**:
 
-- Interactive Leaflet map with all 843 wilderness area boundaries
-- Click polygons to toggle visited/unvisited (gold = visited, green = unvisited)
-- Search by name with autocomplete
-- Zoom-to-area button
-- Progress stats: count, percentage, and total acres visited
-- Sortable/searchable visited-areas table
-- Export your visit list to CSV for safekeeping
-- Import a previously exported CSV to restore your list
-- Three basemap options: Light, Topo, and Satellite
+- [Page](https://github.com/garrettgcraig/Personal-Website/blob/main/wilderness.html)
+- [Application JavaScript](https://github.com/garrettgcraig/Personal-Website/blob/main/assets/js/lands-tracker.js)
+- [Development, basemaps, storage, backups and deployment](https://github.com/garrettgcraig/Personal-Website/blob/main/docs/public-lands-tracker.md)
+- [R boundary preparation](https://github.com/garrettgcraig/Personal-Website/blob/main/data/build_layers.R)
 
-## Setup
+The public app needs no Shiny server or R process. It tracks wilderness areas, National Park Service units and national forests. Visits save in the current browser; export CSV for backup or transfer to another browser. Old Shiny CSV exports with `name` or `wid` columns can be imported. Cross-device account syncing is not included.
 
-Install the required R packages:
+## Legacy Shiny reference
 
-```r
-install.packages(c("shiny", "bslib", "leaflet", "sf", "dplyr", "DT", "jsonlite", "scales"))
-```
+The original Shiny app, bundled data and preparation script are preserved under `legacy/`. They are historical reference, not the production deployment. To run that version, install `shiny`, `bslib`, `leaflet`, `sf`, `dplyr`, `DT`, `jsonlite` and `scales`, then run `shiny::runApp("legacy")` from this repository root. Its visited list is session-only, so export before closing.
 
-Then launch the app:
-
-```r
-shiny::runApp()
-```
-
-The boundary data (`data/wilderness_areas.geojson`) is included in the repo. To refresh it from the latest [wilderness.net](https://wilderness.net) shapefile, delete the file and run `source("setup_data.R")`.
-
-## Saving and restoring your list
-
-- Click **Export visited list (.csv)** to download a CSV of your visited areas.
-- To restore in a future session, use the **Import visited list (.csv)** file input to re-import the CSV. Areas are matched by wilderness ID (`wid`) or name.
-
-## Data source
-
-Wilderness area boundaries are from [Wilderness Connect (wilderness.net)](https://wilderness.net/visit-wilderness/gis-gps.php), maintained by the University of Montana. The data is available for public use.
+For new changes, use the maintained website repository. Keeping one production source avoids the old Shiny app and live website drifting apart.
